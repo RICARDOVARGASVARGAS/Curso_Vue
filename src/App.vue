@@ -2,48 +2,31 @@
 
 import { ref, reactive, computed } from 'vue'
 
-const count = ref(0)
-
-const user = reactive({
-  name: 'John Doe',
-  age: 18
-})
-
-const estado = computed(() => {
-  return user.age >= 18 ? 'Eres mayor de edad' : 'Eres menor de edad'
-})
-
-function increment() {
-  count.value++
-  user.age++
-}
-
-function decrement() {
-  count.value--
-  user.age--
-}
-
+const pintar = ref(false)
 
 
 </script>
 
 <template>
 
-  <div>
-    <h1>Count: {{ count }}</h1>
-    <button @click="increment">Increment</button>
-    <button @click="decrement">Decrement</button>
+  <button @click="pintar = !pintar">
+    Pintar
+  </button>
 
-
-    <h1>Name: {{ user.name }}</h1>
-    <h1>Age: {{ user.age }}</h1>
-
-
-    <p>
-      {{ estado }}
-    </p>
-  </div>
+  <p :class="[pintar ? 'bg-red' : 'bg-blue', 'text-white']">Hola Mundo</p>
 
 </template>
 
-<style scoped></style>
+<style scoped>
+.bg-red {
+  background-color: red;
+}
+
+.bg-blue {
+  background-color: blue;
+}
+
+.text-white {
+  color: white;
+}
+</style>
