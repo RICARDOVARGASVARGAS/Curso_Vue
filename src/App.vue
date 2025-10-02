@@ -1,32 +1,41 @@
 <script setup>
 
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive } from 'vue'
 
-const pintar = ref(false)
-
+let users = [
+  {
+    id: 1,
+    name: 'John Doe'
+  },
+  {
+    id: 2,
+    name: 'Mary Doe'
+  },
+  {
+    id: 3,
+    name: 'Jane Roe'
+  },
+  {
+    id: 4,
+    name: 'John Roe'
+  }
+]
 
 </script>
 
 <template>
 
-  <button @click="pintar = !pintar">
-    Pintar
-  </button>
+  <ul>
+    <li v-for="({ id, name }, index) in users" :key="id">
+      {{ id }} - {{ name }}
+    </li>
+    -------------
+    <template v-for="({ id, name }, index) in users" :key="id">
+      <li>{{ id }} - {{ name }}</li>
+    </template>
 
-  <p :class="[pintar ? 'bg-red' : 'bg-blue', 'text-white']">Hola Mundo</p>
+  </ul>
 
 </template>
 
-<style scoped>
-.bg-red {
-  background-color: red;
-}
-
-.bg-blue {
-  background-color: blue;
-}
-
-.text-white {
-  color: white;
-}
-</style>
+<style scoped></style>
